@@ -630,7 +630,9 @@ static int adev_open_input_stream(struct audio_hw_device *dev,
     if (!in)
         return -ENOMEM;
 
+#ifndef USES_AUDIO_LEGACY
     devices = convert_audio_device(devices, HAL_API_REV_2_0, HAL_API_REV_1_0);
+#endif
 
 #ifndef ICS_AUDIO_BLOB
     in->legacy_in = ladev->hwif->openInputStream(devices, (int *) &config->format,
